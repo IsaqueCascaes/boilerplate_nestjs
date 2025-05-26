@@ -6,6 +6,8 @@ interface ProductProps {
   description?: string | null;
   price: number;
   companyId: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class ProductEntity extends Entity<ProductProps> {
@@ -32,6 +34,14 @@ export class ProductEntity extends Entity<ProductProps> {
 
   get companyId() {
     return this.props.companyId;
+  }
+
+  get createdAt(): Date | undefined {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date | undefined {
+    return this.props.updatedAt;
   }
 
   static create(props: ProductProps, id?: UniqueEntityID): ProductEntity {

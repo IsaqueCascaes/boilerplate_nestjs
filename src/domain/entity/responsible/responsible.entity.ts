@@ -6,6 +6,8 @@ interface ResponsibleProps {
   email: string;
   phone: string;
   cpf: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class ResponsibleEntity extends Entity<ResponsibleProps> {
@@ -35,6 +37,14 @@ export class ResponsibleEntity extends Entity<ResponsibleProps> {
   }
   set cpf(value: string) {
     this.props.cpf = value;
+  }
+
+  get createdAt(): Date | undefined {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date | undefined {
+    return this.props.updatedAt;
   }
 
   static create(

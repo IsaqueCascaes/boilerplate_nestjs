@@ -5,6 +5,8 @@ interface CompanyProps {
   name: string;
   cnpj: string;
   responsibleId: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class CompanyEntity extends Entity<CompanyProps> {
@@ -27,6 +29,14 @@ export class CompanyEntity extends Entity<CompanyProps> {
   }
   set responsibleId(value: string) {
     this.props.responsibleId = value;
+  }
+
+  get createdAt(): Date | undefined {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date | undefined {
+    return this.props.updatedAt;
   }
 
   static create(props: CompanyProps, id?: UniqueEntityID): CompanyEntity {
