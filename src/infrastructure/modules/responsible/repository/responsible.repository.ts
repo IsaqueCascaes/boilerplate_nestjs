@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
 import { ResponsibleEntity } from 'src/domain/entity/responsible/responsible.entity';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import { ResponsibleMapper } from 'src/infrastructure/mappers/responsible/responsible.mapper';
 
 @Injectable()
@@ -8,7 +10,7 @@ export class PrismaResponsibleRepository implements ResponsibleRepository {
 
   async findAll(): Promise<ResponsibleEntity[]> {
     const records = await this.prisma.responsible.findMany();
-    return records.map(ResponsibleMapper.toDomain);
+    return records.map((record) => ResponsibleMapper.toDomain(record));
   }
 
   async findById(id: string): Promise<ResponsibleEntity | null> {

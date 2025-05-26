@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CompanyRepository } from 'src/application/repository/company/company.repository';
 import { CompanyEntity } from 'src/domain/entity/company/company.entity';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import { CompanyMapper } from 'src/infrastructure/mappers/company/company.mapper';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class PrismaCompanyRepository implements CompanyRepository {
 
   async findAll(): Promise<CompanyEntity[]> {
     const records = await this.prisma.company.findMany();
-    return records.map(CompanyMapper.toDomain);
+    return records.map((record) => CompanyMapper.toDomain(record));
   }
 
   async findById(id: string): Promise<CompanyEntity | null> {

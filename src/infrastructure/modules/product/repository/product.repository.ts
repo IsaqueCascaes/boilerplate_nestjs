@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ProductRepository } from 'src/application/repository/product/product.repository';
 import { ProductEntity } from 'src/domain/entity/product/product.entity';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import { ProductMapper } from 'src/infrastructure/mappers/product/product.mapper';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class PrismaProductRepository implements ProductRepository {
 
   async findAll(): Promise<ProductEntity[]> {
     const products = await this.prisma.product.findMany();
-    return products.map(ProductMapper.toDomain);
+    return products.map((product) => ProductMapper.toDomain(product));
   }
 
   async findById(id: string): Promise<ProductEntity | null> {
