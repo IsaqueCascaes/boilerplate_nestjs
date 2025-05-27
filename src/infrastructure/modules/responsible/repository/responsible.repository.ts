@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
+import { FindAllResponsibleDto } from 'src/domain/dto/responsible/find-all-responsibles.dto';
 import { ResponsibleEntity } from 'src/domain/entity/responsible/responsible.entity';
 import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import { ResponsibleMapper } from 'src/infrastructure/mappers/responsible/responsible.mapper';
@@ -8,8 +9,29 @@ import { ResponsibleMapper } from 'src/infrastructure/mappers/responsible/respon
 export class PrismaResponsibleRepository implements ResponsibleRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(): Promise<ResponsibleEntity[]> {
-    const records = await this.prisma.responsible.findMany();
+  async findAll(filters: FindAllResponsibleDto): Promise<ResponsibleEntity[]> {
+    const where: Record<string, any> = {};
+
+    if (filters.name) {
+      where.name = {
+        contains: filters.name,
+      };
+    }
+
+    if (filters.email) {
+      where.email = {
+        contains: filters.email,
+      };
+    }
+
+    if (filters.cpf) {
+      where.cpf = {
+        contains: filters.cpf,
+      };
+    }
+
+    const records = await this.prisma.responsible.findMany({ where });
+
     return records.map((record) => ResponsibleMapper.toDomain(record));
   }
 
