@@ -6,6 +6,7 @@ import { CompanyController } from 'src/infrastructure/modules/company/controller
 import { ResponsibleModule } from '../responsible/responsible.module';
 import { FindAllCompaniesUseCase } from 'src/domain/use case/company/find-all-companies.use-case';
 import { FindCompanyByIdUseCase } from 'src/domain/use case/company/find-company-by-id.use-case';
+import { UpdateCompanyUseCase } from 'src/domain/use case/company/update-company.use-case';
 
 @Module({
   imports: [ResponsibleModule],
@@ -15,6 +16,7 @@ import { FindCompanyByIdUseCase } from 'src/domain/use case/company/find-company
     CompanyService,
     FindAllCompaniesUseCase,
     FindCompanyByIdUseCase,
+    UpdateCompanyUseCase,
   ],
   exports: [CompanyRepositoryProvider],
   controllers: [CompanyController],

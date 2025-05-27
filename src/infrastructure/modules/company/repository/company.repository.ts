@@ -64,7 +64,10 @@ export class PrismaCompanyRepository implements CompanyRepository {
   async update(company: CompanyEntity): Promise<void> {
     await this.prisma.company.update({
       where: { id: company.id.toValue() },
-      data: CompanyMapper.toPersistence(company),
+      data: {
+        name: company.name,
+        cnpj: company.cnpj,
+      },
     });
   }
 
