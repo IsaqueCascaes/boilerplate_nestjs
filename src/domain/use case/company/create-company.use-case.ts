@@ -1,4 +1,9 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { CompanyRepository } from 'src/application/repository/company/company.repository';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
 import { CreateCompanyDto } from 'src/domain/dto/company/create-company.dto';
@@ -24,6 +29,18 @@ export class CreateCompanyUseCase {
       throw new NotFoundException(
         'Responsible not found, verify if it is valid or exists',
       );
+    }
+
+    const companyByName = await this.companyRepository.findByName(input.name);
+    if (companyByName) {
+      this.logger.warn(`Company with name already exists: ${input.name}`);
+      throw new ConflictException('A company with this name already exists.');
+    }
+
+    const companyByCnpj = await this.companyRepository.findByCnpj(input.cnpj);
+    if (companyByCnpj) {
+      this.logger.warn(`Company with CNPJ already exists: ${input.cnpj}`);
+      throw new ConflictException('A company with this CNPJ already exists.');
     }
 
     const company = CompanyEntity.create({

@@ -85,4 +85,14 @@ export class PrismaCompanyRepository implements CompanyRepository {
 
     return CompanyMapper.toDomain(record);
   }
+
+  async findByName(name: string): Promise<CompanyEntity | null> {
+    const record = await this.prisma.company.findUnique({ where: { name } });
+    return record ? CompanyMapper.toDomain(record) : null;
+  }
+
+  async findByCnpj(cnpj: string): Promise<CompanyEntity | null> {
+    const record = await this.prisma.company.findUnique({ where: { cnpj } });
+    return record ? CompanyMapper.toDomain(record) : null;
+  }
 }

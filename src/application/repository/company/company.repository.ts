@@ -7,4 +7,6 @@ export abstract class CompanyRepository {
   abstract create(company: CompanyEntity): Promise<void>;
   abstract update(company: CompanyEntity): Promise<void>;
   abstract delete(id: string): Promise<CompanyEntity | null>;
+  abstract findByName(name: string): Promise<CompanyEntity | null>;
+  abstract findByCnpj(cnpj: string): Promise<CompanyEntity | null>;
 }
