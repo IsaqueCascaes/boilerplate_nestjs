@@ -9,6 +9,8 @@ import { FindCompanyByIdOutputDto } from '../controller/dto/find-company-by-id-o
 import { FindCompanyByIdUseCase } from 'src/domain/use case/company/find-company-by-id.use-case';
 import { UpdateCompanyDto } from 'src/domain/dto/company/update-company.dto';
 import { UpdateCompanyUseCase } from 'src/domain/use case/company/update-company.use-case';
+import { DeleteCompanyOutputDto } from '../controller/dto/delete-company-output.dto';
+import { DeleteCompanyUseCase } from 'src/domain/use case/company/delete-company.use-case';
 
 @Injectable()
 export class CompanyService {
@@ -17,6 +19,7 @@ export class CompanyService {
     private readonly findAllCompaniesUseCase: FindAllCompaniesUseCase,
     private readonly findCompanyByIdUseCase: FindCompanyByIdUseCase,
     private readonly updateCompanyUseCase: UpdateCompanyUseCase,
+    private readonly deleteCompanyUseCase: DeleteCompanyUseCase,
   ) {}
 
   async create(input: CreateCompanyDto): Promise<CreateCompanyOutputDto> {
@@ -35,5 +38,9 @@ export class CompanyService {
 
   async update(id: string, input: UpdateCompanyDto) {
     return this.updateCompanyUseCase.execute(id, input);
+  }
+
+  async delete(id: string): Promise<DeleteCompanyOutputDto> {
+    return this.deleteCompanyUseCase.execute(id);
   }
 }

@@ -71,7 +71,18 @@ export class PrismaCompanyRepository implements CompanyRepository {
     });
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string): Promise<CompanyEntity | null> {
+    const record = await this.prisma.company.findUnique({
+      where: { id },
+      include: { responsible: true },
+    });
+
+    if (!record) {
+      return null;
+    }
+
     await this.prisma.company.delete({ where: { id } });
+
+    return CompanyMapper.toDomain(record);
   }
 }

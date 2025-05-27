@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CompanyService } from '../service/company.service';
 import { CreateCompanyDto } from 'src/domain/dto/company/create-company.dto';
@@ -12,6 +21,8 @@ import { ApiGetCompanyByIdResponse } from '../decorator/get-company-by-id-respon
 import { UpdateCompanyDto } from 'src/domain/dto/company/update-company.dto';
 import { UpdateCompanyOutputDto } from './dto/update-company-output.dto';
 import { ApiUpdateCompanyResponse } from '../decorator/update-company-response.decorator';
+import { DeleteCompanyOutputDto } from './dto/delete-company-output.dto';
+import { ApiDeleteCompanyResponse } from '../decorator/delete-company-response.decorator';
 
 @ApiTags('Companies')
 @Controller('companies')
@@ -50,6 +61,13 @@ export class CompanyController {
     @Body() body: UpdateCompanyDto,
   ): Promise<UpdateCompanyOutputDto> {
     const result = await this.companyService.update(id, body);
+    return result;
+  }
+
+  @Delete(':id')
+  @ApiDeleteCompanyResponse()
+  async delete(@Param('id') id: string): Promise<DeleteCompanyOutputDto> {
+    const result = await this.companyService.delete(id);
     return result;
   }
 }
