@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
 import { CreateResponsibleDto } from 'src/domain/dto/responsible/create-responsible.dto';
 import { ResponsibleEntity } from 'src/domain/entity/responsible/responsible.entity';
-import { CreateResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/create-responsible.dto';
+import { CreateResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/create-responsible-output.dto';
 
 @Injectable()
 export class CreateResponsibleUseCase {

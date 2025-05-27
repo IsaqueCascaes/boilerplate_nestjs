@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
 import { UpdateResponsibleDto } from 'src/domain/dto/responsible/update-responsible.dto';
-import { UpdateResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/update-responsible.dto';
+import { UpdateResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/update-responsible-output.dto';
 import { ResponsibleEntity } from 'src/domain/entity/responsible/responsible.entity';
 import { UniqueEntityID } from 'src/domain/core/unique-entity-id';
 

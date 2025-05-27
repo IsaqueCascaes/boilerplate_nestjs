@@ -1,6 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
-import { GetResponsibleByIdOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/get-responsible-by-id.dto';
+import { GetResponsibleByIdOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/get-responsible-by-id-output.dto';
 
 @Injectable()
 export class GetResponsibleByIdUseCase {

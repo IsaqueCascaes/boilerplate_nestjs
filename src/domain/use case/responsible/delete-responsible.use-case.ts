@@ -1,6 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
-import { DeleteResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/delete-responsible.dto';
+import { DeleteResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/delete-responsible-output.dto';
 
 @Injectable()
 export class DeleteResponsibleUseCase {

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ResponsibleRepository } from 'src/application/repository/responsible/responsible.repository';
 import { FindAllResponsibleDto } from 'src/domain/dto/responsible/find-all-responsibles.dto';
-import { FindAllResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/find-all-responsibles.dto';
+import { FindAllResponsibleOutputDto } from 'src/infrastructure/modules/responsible/controller/dto/find-all-responsibles-output.dto';
 @Injectable()
 export class FindAllResponsiblesUseCase {
   private readonly logger = new Logger(FindAllResponsiblesUseCase.name);
