@@ -22,6 +22,7 @@ import { DeleteResponsibleOutputDto } from './dto/delete-responsible.dto';
 import { ApiDeleteResponsibleResponse } from '../decorator/delete-responsible-response.decorator';
 import { GetResponsibleByIdOutputDto } from './dto/get-responsible-by-id.dto';
 import { ApiGetResponsibleByIdResponse } from '../decorator/get-responsible-by-id-response.decorator';
+import { ApiCreateResponsibleResponse } from '../decorator/create-responsible-response.decorator';
 
 @ApiTags('Responsáveis')
 @Controller('responsibles')
@@ -29,6 +30,7 @@ export class ResponsibleController {
   constructor(private readonly responsibleService: ResponsibleService) {}
 
   @Post()
+  @ApiCreateResponsibleResponse()
   @ApiBody({ type: CreateResponsibleDto })
   async create(
     @Body() body: CreateResponsibleDto,
