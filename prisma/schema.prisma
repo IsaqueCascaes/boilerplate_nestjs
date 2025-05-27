@@ -21,9 +21,9 @@ model Company {
 model Responsible {
   id        String   @id @default(uuid())
   name      String
-  email     String
+  email     String   @unique
   phone     String
-  cpf       String
+  cpf       String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
