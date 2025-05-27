@@ -4,6 +4,7 @@ import { ResponsibleService } from 'src/infrastructure/modules/responsible/servi
 import { CreateResponsibleUseCase } from 'src/domain/use case/responsible/create-responsible.use-case';
 import { ResponsibleController } from 'src/infrastructure/modules/responsible/controller/responsible.controller';
 import { FindAllResponsiblesUseCase } from 'src/domain/use case/responsible/find-all-responsibles.use-case';
+import { UpdateResponsibleUseCase } from 'src/domain/use case/responsible/update-responsible.use-case';
 
 @Module({
   providers: [
@@ -11,6 +12,7 @@ import { FindAllResponsiblesUseCase } from 'src/domain/use case/responsible/find
     ResponsibleService,
     CreateResponsibleUseCase,
     FindAllResponsiblesUseCase,
+    UpdateResponsibleUseCase,
   ],
   exports: [ResponsibleRepositoryProvider],
   controllers: [ResponsibleController],

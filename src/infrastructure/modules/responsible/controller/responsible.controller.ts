@@ -34,4 +34,15 @@ export class ResponsibleController {
     const result = await this.responsibleService.findAll(query);
     return result;
   }
+
+  @Put(':id')
+  @ApiUpdateResponsibleResponse()
+  @ApiOkResponse({ type: UpdateResponsibleOutputDto })
+  async update(
+    @Param('id') id: string,
+    @Body() body: UpdateResponsibleDto,
+  ): Promise<UpdateResponsibleOutputDto> {
+    const result = await this.responsibleService.update(id, body);
+    return result;
+  }
 }
