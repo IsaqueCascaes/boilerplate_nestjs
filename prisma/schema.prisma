@@ -7,25 +7,26 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model Company {
-  id            String    @id @default(uuid())
+  id            String      @id @default(uuid())
   name          String
   cnpj          String
   responsibleId String
+  responsible   Responsible? @relation(fields: [responsibleId], references: [id])
   products      Product[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model Responsible {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   phone     String
-  cpf       String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  cpf       String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Company   Company[]
 }
 
 model Product {
@@ -38,4 +39,3 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
-
