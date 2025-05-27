@@ -6,4 +6,6 @@ export abstract class ResponsibleRepository {
   abstract create(responsible: ResponsibleEntity): Promise<void>;
   abstract update(responsible: ResponsibleEntity): Promise<void>;
   abstract delete(id: string): Promise<void>;
+  abstract findByCpf(cpf: string): Promise<ResponsibleEntity | null>;
+  abstract findByEmail(email: string): Promise<ResponsibleEntity | null>;
 }

@@ -34,4 +34,16 @@ export class PrismaResponsibleRepository implements ResponsibleRepository {
   async delete(id: string): Promise<void> {
     await this.prisma.responsible.delete({ where: { id } });
   }
+
+  async findByCpf(cpf: string): Promise<ResponsibleEntity | null> {
+    const record = await this.prisma.responsible.findUnique({ where: { cpf } });
+    return record ? ResponsibleMapper.toDomain(record) : null;
+  }
+
+  async findByEmail(email: string): Promise<ResponsibleEntity | null> {
+    const record = await this.prisma.responsible.findUnique({
+      where: { email },
+    });
+    return record ? ResponsibleMapper.toDomain(record) : null;
+  }
 }
