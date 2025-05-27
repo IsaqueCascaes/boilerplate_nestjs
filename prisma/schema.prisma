@@ -9,8 +9,8 @@ generator client {
 
 model Company {
   id            String      @id @default(uuid())
-  name          String
-  cnpj          String
+  name          String      @unique
+  cnpj          String      @unique
   responsibleId String
   responsible   Responsible? @relation(fields: [responsibleId], references: [id])
   products      Product[]
