@@ -1,4 +1,3 @@
-// infrastructure/modules/responsible/decorator/update-responsible-response.decorator.ts
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
