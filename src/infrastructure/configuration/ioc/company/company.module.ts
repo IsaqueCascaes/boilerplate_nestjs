@@ -4,10 +4,16 @@ import { CreateCompanyUseCase } from 'src/domain/use case/company/create-company
 import { CompanyService } from 'src/infrastructure/modules/company/service/company.service';
 import { CompanyController } from 'src/infrastructure/modules/company/controller/company.controller';
 import { ResponsibleModule } from '../responsible/responsible.module';
+import { FindAllCompaniesUseCase } from 'src/domain/use case/company/find-all-companies.use-case';
 
 @Module({
   imports: [ResponsibleModule],
-  providers: [CompanyRepositoryProvider, CreateCompanyUseCase, CompanyService],
+  providers: [
+    CompanyRepositoryProvider,
+    CreateCompanyUseCase,
+    CompanyService,
+    FindAllCompaniesUseCase,
+  ],
   exports: [CompanyRepositoryProvider],
   controllers: [CompanyController],
 })
