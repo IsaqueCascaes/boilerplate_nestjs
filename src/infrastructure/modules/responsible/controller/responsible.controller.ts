@@ -7,7 +7,7 @@ import { ResponsibleService } from '../service/responsible.service';
 @ApiTags('Responsáveis')
 @Controller('responsibles')
 export class ResponsibleController {
-  constructor(private readonly service: ResponsibleService) {}
+  constructor(private readonly responsibleService: ResponsibleService) {}
 
   @Post()
   @ApiBody({ type: CreateResponsibleDto })
