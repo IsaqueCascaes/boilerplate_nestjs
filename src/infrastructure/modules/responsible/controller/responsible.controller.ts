@@ -20,6 +20,8 @@ import { UpdateResponsibleDto } from 'src/domain/dto/responsible/update-responsi
 import { ApiUpdateResponsibleResponse } from '../decorator/update-responsible-response.decorator';
 import { DeleteResponsibleOutputDto } from './dto/delete-responsible.dto';
 import { ApiDeleteResponsibleResponse } from '../decorator/delete-responsible-response.decorator';
+import { GetResponsibleByIdOutputDto } from './dto/get-responsible-by-id.dto';
+import { ApiGetResponsibleByIdResponse } from '../decorator/get-responsible-by-id-response.decorator';
 
 @ApiTags('Responsáveis')
 @Controller('responsibles')
@@ -59,6 +61,15 @@ export class ResponsibleController {
   @ApiDeleteResponsibleResponse()
   async delete(@Param('id') id: string): Promise<DeleteResponsibleOutputDto> {
     const result = await this.responsibleService.delete(id);
+    return result;
+  }
+
+  @Get(':id')
+  @ApiGetResponsibleByIdResponse()
+  async findById(
+    @Param('id') id: string,
+  ): Promise<GetResponsibleByIdOutputDto> {
+    const result = await this.responsibleService.findById(id);
     return result;
   }
 }
