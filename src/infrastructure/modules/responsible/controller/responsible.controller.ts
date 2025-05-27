@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ApiTags, ApiBody, ApiOkResponse } from '@nestjs/swagger';
 import { CreateResponsibleDto } from 'src/domain/dto/responsible/create-responsible.dto';
 import { CreateResponsibleOutputDto } from './dto/create-responsible.dto';
@@ -9,6 +18,8 @@ import { ApiGetAllResponsiblesResponse } from '../decorator/get-all-responsibles
 import { UpdateResponsibleOutputDto } from './dto/update-responsible.dto';
 import { UpdateResponsibleDto } from 'src/domain/dto/responsible/update-responsible.dto';
 import { ApiUpdateResponsibleResponse } from '../decorator/update-responsible-response.decorator';
+import { DeleteResponsibleOutputDto } from './dto/delete-responsible.dto';
+import { ApiDeleteResponsibleResponse } from '../decorator/delete-responsible-response.decorator';
 
 @ApiTags('Responsáveis')
 @Controller('responsibles')
@@ -41,6 +52,13 @@ export class ResponsibleController {
     @Body() body: UpdateResponsibleDto,
   ): Promise<UpdateResponsibleOutputDto> {
     const result = await this.responsibleService.update(id, body);
+    return result;
+  }
+
+  @Delete(':id')
+  @ApiDeleteResponsibleResponse()
+  async delete(@Param('id') id: string): Promise<DeleteResponsibleOutputDto> {
+    const result = await this.responsibleService.delete(id);
     return result;
   }
 }

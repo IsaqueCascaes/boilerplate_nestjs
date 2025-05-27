@@ -8,12 +8,15 @@ import { FindAllResponsiblesUseCase } from 'src/domain/use case/responsible/find
 import { UpdateResponsibleDto } from 'src/domain/dto/responsible/update-responsible.dto';
 import { UpdateResponsibleOutputDto } from '../controller/dto/update-responsible.dto';
 import { UpdateResponsibleUseCase } from 'src/domain/use case/responsible/update-responsible.use-case';
+import { DeleteResponsibleOutputDto } from '../controller/dto/delete-responsible.dto';
+import { DeleteResponsibleUseCase } from 'src/domain/use case/responsible/delete-responsible.use-case';
 @Injectable()
 export class ResponsibleService {
   constructor(
     private readonly createUseCase: CreateResponsibleUseCase,
     private readonly findAllUseCase: FindAllResponsiblesUseCase,
     private readonly updateResponsibleUseCase: UpdateResponsibleUseCase,
+    private readonly deleteResponsibleUseCase: DeleteResponsibleUseCase,
   ) {}
 
   async create(
@@ -33,5 +36,9 @@ export class ResponsibleService {
     input: UpdateResponsibleDto,
   ): Promise<UpdateResponsibleOutputDto> {
     return this.updateResponsibleUseCase.execute(id, input);
+  }
+
+  async delete(id: string): Promise<DeleteResponsibleOutputDto> {
+    return this.deleteResponsibleUseCase.execute(id);
   }
 }
