@@ -4,7 +4,9 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 export function ApiGetAllResponsiblesResponse() {
   return applyDecorators(
     ApiOperation({
-      summary: 'Retrieve all responsibles with optional filters',
+      summary: 'Retrieve all responsibles',
+      description:
+        'Returns a list of responsibles. You can optionally filter by name, email, or CPF.',
     }),
     ApiResponse({
       status: 200,
