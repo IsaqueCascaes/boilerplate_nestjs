@@ -30,6 +30,22 @@ export function ApiCreateCompanyResponse() {
             error: 'Not Found',
           },
         },
+        nameConflict: {
+          summary: 'Company with this name already exists',
+          value: {
+            statusCode: 409,
+            message: 'A company with this name already exists.',
+            error: 'Conflict',
+          },
+        },
+        cnpjConflict: {
+          summary: 'Company with this CNPJ already exists',
+          value: {
+            statusCode: 409,
+            message: 'A company with this CNPJ already exists.',
+            error: 'Conflict',
+          },
+        },
       },
     }),
   );
