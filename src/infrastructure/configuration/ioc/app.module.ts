@@ -9,7 +9,7 @@ import { PrismaModule } from 'src/infrastructure/database/prisma/prisma.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env.local',
+      envFilePath: '.env',
     }),
     ProductModule,
     CompanyModule,
