@@ -1,4 +1,4 @@
-# 🚀 MPro Backend Boilerplate
+# 🚀Backend Boilerplate
 
 Esta API tem como objetivo fornecer um sistema para o gerenciamento de **produtos**, **empresas** e seus respectivos **responsáveis**. A aplicação permite criar, listar, buscar, atualizar e excluir dados de forma estruturada e segura, servindo como base para sistemas administrativos.
 ## 📦 Instalação
