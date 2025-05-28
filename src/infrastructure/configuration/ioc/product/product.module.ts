@@ -8,6 +8,7 @@ import { UpdateProductUseCase } from 'src/domain/use case/product/update-product
 import { GetProductByIdUseCase } from 'src/domain/use case/product/get-product-by-id.use-case';
 import { DeleteProductUseCase } from 'src/domain/use case/product/delete-product.use-case';
 import { GetAllProductsUseCase } from 'src/domain/use case/product/get-all-products.use-case';
+import { FindAllProductsUseCase } from 'src/domain/use case/product/find-all-products.use-case';
 
 @Module({
   imports: [CompanyModule],
@@ -19,6 +20,7 @@ import { GetAllProductsUseCase } from 'src/domain/use case/product/get-all-produ
     GetProductByIdUseCase,
     DeleteProductUseCase,
     GetAllProductsUseCase,
+    FindAllProductsUseCase,
   ],
   exports: [ProductRepositoryProvider],
   controllers: [ProductController],

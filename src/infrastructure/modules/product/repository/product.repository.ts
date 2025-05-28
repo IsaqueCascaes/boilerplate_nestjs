@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ProductRepository } from 'src/application/repository/product/product.repository';
+import { FindAllProductsDto } from 'src/domain/dto/product/find-all-products.dto';
 import { ProductEntity } from 'src/domain/entity/product/product.entity';
 import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import { ProductMapper } from 'src/infrastructure/mappers/product/product.mapper';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PrismaProductRepository implements ProductRepository {
@@ -47,5 +49,31 @@ export class PrismaProductRepository implements ProductRepository {
     });
 
     return product ? ProductMapper.toDomain(product) : null;
+  }
+
+  async findByFilters(filters: FindAllProductsDto): Promise<ProductEntity[]> {
+    const where: Prisma.ProductWhereInput = {
+      name: filters.name
+        ? {
+            contains: filters.name,
+          }
+        : undefined,
+      company: filters.companyName
+        ? {
+            name: {
+              contains: filters.companyName,
+            },
+          }
+        : undefined,
+    };
+
+    const records = await this.prisma.product.findMany({
+      where,
+      include: {
+        company: true,
+      },
+    });
+
+    return records.map((record) => ProductMapper.toDomain(record));
   }
 }

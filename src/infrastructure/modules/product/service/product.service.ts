@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from 'src/domain/dto/product/create-product.dto';
+import { FindAllProductsDto } from 'src/domain/dto/product/find-all-products.dto';
 import { UpdateProductDto } from 'src/domain/dto/product/update-product.dto';
 import { CreateProductUseCase } from 'src/domain/use case/product/create-product.use-case';
 import { DeleteProductUseCase } from 'src/domain/use case/product/delete-product.use-case';
+import { FindAllProductsUseCase } from 'src/domain/use case/product/find-all-products.use-case';
 import { GetAllProductsUseCase } from 'src/domain/use case/product/get-all-products.use-case';
 import { GetProductByIdUseCase } from 'src/domain/use case/product/get-product-by-id.use-case';
 import { UpdateProductUseCase } from 'src/domain/use case/product/update-product.use-case';
@@ -15,6 +17,7 @@ export class ProductService {
     private readonly getProductByIdUseCase: GetProductByIdUseCase,
     private readonly deleteProductUseCase: DeleteProductUseCase,
     private readonly getAllProductsUseCase: GetAllProductsUseCase,
+    private readonly findAllProductsUseCase: FindAllProductsUseCase,
   ) {}
 
   async create(input: CreateProductDto) {
@@ -35,5 +38,9 @@ export class ProductService {
 
   async getAllProducts() {
     return this.getAllProductsUseCase.execute();
+  }
+
+  async findAll(filters: FindAllProductsDto) {
+    return this.findAllProductsUseCase.execute(filters);
   }
 }

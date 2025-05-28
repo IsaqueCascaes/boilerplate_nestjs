@@ -6,6 +6,7 @@ interface ProductProps {
   description?: string | null;
   price: number;
   companyId: string;
+  companyName?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -34,6 +35,10 @@ export class ProductEntity extends Entity<ProductProps> {
 
   get companyId() {
     return this.props.companyId;
+  }
+
+  get companyName(): string | undefined {
+    return this.props.companyName;
   }
 
   get createdAt(): Date | undefined {

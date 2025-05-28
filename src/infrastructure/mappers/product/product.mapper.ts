@@ -1,15 +1,20 @@
-import { Product as PrismaProduct } from '@prisma/client';
+import { Product, Company } from '@prisma/client';
 import { UniqueEntityID } from 'src/domain/core/unique-entity-id';
 import { ProductEntity } from 'src/domain/entity/product/product.entity';
 
+type ProductWithCompany = Product & {
+  company?: Company | null;
+};
+
 export class ProductMapper {
-  static toDomain(raw: PrismaProduct): ProductEntity {
+  static toDomain(raw: ProductWithCompany): ProductEntity {
     return ProductEntity.create(
       {
         name: raw.name,
         description: raw.description,
         price: raw.price,
         companyId: raw.companyId,
+        companyName: raw.company?.name,
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
       },
@@ -17,7 +22,7 @@ export class ProductMapper {
     );
   }
 
-  static toPersistence(entity: ProductEntity): PrismaProduct {
+  static toPersistence(entity: ProductEntity): Product {
     return {
       id: entity.id.toValue(),
       name: entity.name,

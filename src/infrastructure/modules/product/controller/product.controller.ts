@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ProductService } from '../service/product.service';
@@ -16,11 +17,19 @@ import { ApiUpdateProductResponse } from '../decorator/update-product-response.d
 import { ApiGetProductByIdResponse } from '../decorator/get-product-by-id-response.decorator';
 import { ApiDeleteProductResponse } from '../decorator/delete-product-response.decorator';
 import { ApiGetAllProductsResponse } from '../decorator/get-all-products-response.decorator';
+import { FindAllProductsDto } from 'src/domain/dto/product/find-all-products.dto';
+import { ApiFindAllProductsResponse } from '../decorator/find-all-products-response.decorator';
 
 @ApiTags('products')
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
+
+  @Get('/search')
+  @ApiFindAllProductsResponse()
+  async findAll(@Query() query: FindAllProductsDto) {
+    return this.productService.findAll(query);
+  }
 
   @Post()
   @ApiCreateProductResponse()
