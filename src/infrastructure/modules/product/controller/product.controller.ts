@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ProductService } from '../service/product.service';
 import { CreateProductDto } from 'src/domain/dto/product/create-product.dto';
@@ -6,6 +14,7 @@ import { ApiCreateProductResponse } from '../decorator/create-product-response.d
 import { UpdateProductDto } from 'src/domain/dto/product/update-product.dto';
 import { ApiUpdateProductResponse } from '../decorator/update-product-response.decorator';
 import { ApiGetProductByIdResponse } from '../decorator/get-product-by-id-response.decorator';
+import { ApiDeleteProductResponse } from '../decorator/delete-product-response.decorator';
 
 @ApiTags('products')
 @Controller('products')
@@ -28,5 +37,11 @@ export class ProductController {
   @ApiGetProductByIdResponse()
   async getById(@Param('id') id: string) {
     return this.productService.getProductById(id);
+  }
+
+  @Delete(':id')
+  @ApiDeleteProductResponse()
+  async delete(@Param('id') id: string) {
+    return this.productService.deleteProduct(id);
   }
 }
