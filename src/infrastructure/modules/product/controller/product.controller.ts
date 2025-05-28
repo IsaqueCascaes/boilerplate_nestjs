@@ -15,6 +15,7 @@ import { UpdateProductDto } from 'src/domain/dto/product/update-product.dto';
 import { ApiUpdateProductResponse } from '../decorator/update-product-response.decorator';
 import { ApiGetProductByIdResponse } from '../decorator/get-product-by-id-response.decorator';
 import { ApiDeleteProductResponse } from '../decorator/delete-product-response.decorator';
+import { ApiGetAllProductsResponse } from '../decorator/get-all-products-response.decorator';
 
 @ApiTags('products')
 @Controller('products')
@@ -43,5 +44,11 @@ export class ProductController {
   @ApiDeleteProductResponse()
   async delete(@Param('id') id: string) {
     return this.productService.deleteProduct(id);
+  }
+
+  @Get()
+  @ApiGetAllProductsResponse()
+  async getAll() {
+    return this.productService.getAllProducts();
   }
 }

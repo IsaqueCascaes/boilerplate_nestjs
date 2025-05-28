@@ -7,6 +7,7 @@ import { CompanyModule } from '../company/company.module';
 import { UpdateProductUseCase } from 'src/domain/use case/product/update-product.use-case';
 import { GetProductByIdUseCase } from 'src/domain/use case/product/get-product-by-id.use-case';
 import { DeleteProductUseCase } from 'src/domain/use case/product/delete-product.use-case';
+import { GetAllProductsUseCase } from 'src/domain/use case/product/get-all-products.use-case';
 
 @Module({
   imports: [CompanyModule],
@@ -17,6 +18,7 @@ import { DeleteProductUseCase } from 'src/domain/use case/product/delete-product
     UpdateProductUseCase,
     GetProductByIdUseCase,
     DeleteProductUseCase,
+    GetAllProductsUseCase,
   ],
   exports: [ProductRepositoryProvider],
   controllers: [ProductController],
