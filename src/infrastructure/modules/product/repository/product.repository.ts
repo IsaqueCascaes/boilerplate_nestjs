@@ -34,4 +34,19 @@ export class PrismaProductRepository implements ProductRepository {
   async delete(id: string): Promise<void> {
     await this.prisma.product.delete({ where: { id } });
   }
+
+  async existsByNameAndCompanyId(
+    name: string,
+    companyId: string,
+  ): Promise<boolean> {
+    const product = await this.prisma.product.findFirst({
+      where: {
+        name,
+        companyId,
+      },
+      select: { id: true },
+    });
+
+    return !!product;
+  }
 }
