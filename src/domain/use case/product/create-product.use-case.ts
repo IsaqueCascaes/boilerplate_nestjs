@@ -30,7 +30,7 @@ export class CreateProductUseCase {
     }
 
     const productAlreadyExists =
-      await this.productRepository.existsByNameAndCompanyId(
+      await this.productRepository.findByNameAndCompanyId(
         input.name,
         input.companyId,
       );
