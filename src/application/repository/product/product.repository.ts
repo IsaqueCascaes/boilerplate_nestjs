@@ -6,8 +6,8 @@ export abstract class ProductRepository {
   abstract create(product: ProductEntity): Promise<void>;
   abstract update(product: ProductEntity): Promise<void>;
   abstract delete(id: string): Promise<void>;
-  abstract existsByNameAndCompanyId(
+  abstract findByNameAndCompanyId(
     name: string,
     companyId: string,
-  ): Promise<boolean>;
+  ): Promise<ProductEntity | null>;
 }

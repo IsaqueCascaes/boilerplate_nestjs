@@ -35,18 +35,17 @@ export class PrismaProductRepository implements ProductRepository {
     await this.prisma.product.delete({ where: { id } });
   }
 
-  async existsByNameAndCompanyId(
+  async findByNameAndCompanyId(
     name: string,
     companyId: string,
-  ): Promise<boolean> {
+  ): Promise<ProductEntity | null> {
     const product = await this.prisma.product.findFirst({
       where: {
         name,
         companyId,
       },
-      select: { id: true },
     });
 
-    return !!product;
+    return product ? ProductMapper.toDomain(product) : null;
   }
 }
