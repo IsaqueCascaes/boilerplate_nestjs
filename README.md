@@ -137,4 +137,5 @@ http://localhost:3000/api
 
 - Implementação de testes unitários e e2e
 - Paginação e ordenação padrão nos endpoints
-- 
+- Filtro global de exceções com `ExceptionFilter` personalizado
+- Pipeline de CI/CD com validação automática de build e testes
