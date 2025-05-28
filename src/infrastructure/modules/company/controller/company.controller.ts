@@ -23,8 +23,10 @@ import { UpdateCompanyOutputDto } from './dto/update-company-output.dto';
 import { ApiUpdateCompanyResponse } from '../decorator/update-company-response.decorator';
 import { DeleteCompanyOutputDto } from './dto/delete-company-output.dto';
 import { ApiDeleteCompanyResponse } from '../decorator/delete-company-response.decorator';
+import { UseApiKeyAuth } from 'src/infrastructure/configuration/guards/decorator/api-key.decorator';
 
 @ApiTags('Companies')
+@UseApiKeyAuth()
 @Controller('companies')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}

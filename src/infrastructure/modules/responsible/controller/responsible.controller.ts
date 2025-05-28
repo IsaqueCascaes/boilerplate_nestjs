@@ -23,8 +23,10 @@ import { ApiDeleteResponsibleResponse } from '../decorator/delete-responsible-re
 import { GetResponsibleByIdOutputDto } from './dto/get-responsible-by-id-output.dto';
 import { ApiGetResponsibleByIdResponse } from '../decorator/get-responsible-by-id-response.decorator';
 import { ApiCreateResponsibleResponse } from '../decorator/create-responsible-response.decorator';
+import { UseApiKeyAuth } from 'src/infrastructure/configuration/guards/decorator/api-key.decorator';
 
 @ApiTags('Responsibles')
+@UseApiKeyAuth()
 @Controller('responsibles')
 export class ResponsibleController {
   constructor(private readonly responsibleService: ResponsibleService) {}

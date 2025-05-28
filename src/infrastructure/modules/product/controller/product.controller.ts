@@ -19,8 +19,10 @@ import { ApiDeleteProductResponse } from '../decorator/delete-product-response.d
 import { ApiGetAllProductsResponse } from '../decorator/get-all-products-response.decorator';
 import { FindAllProductsDto } from 'src/domain/dto/product/find-all-products.dto';
 import { ApiFindAllProductsResponse } from '../decorator/find-all-products-response.decorator';
+import { UseApiKeyAuth } from 'src/infrastructure/configuration/guards/decorator/api-key.decorator';
 
 @ApiTags('products')
+@UseApiKeyAuth()
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}

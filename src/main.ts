@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { swaggerConfig } from './infrastructure/configuration/swagger/swagger.options';
 import { AppModule } from './infrastructure/configuration/ioc/app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import { ApiKeyGuard } from './infrastructure/configuration/guards/api-key.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,6 +19,8 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const port = configService.get<number>('BOILERPLATE_PORT') || 3000;
+
+  app.useGlobalGuards(new ApiKeyGuard(configService));
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
